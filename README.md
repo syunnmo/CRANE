@@ -27,7 +27,7 @@ __Environment__:
 * torch 1.7.0
 * numpy 1.19.2
 
-# Running KCMN
+# Running CRANE
 Here is a example for using CRANE model (on EdNet):  
 ```
   python main.py --dataset ednet  
