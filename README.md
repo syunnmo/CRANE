@@ -45,4 +45,6 @@ Explanation of parameters:
 * mode : Selection of integration function.
 * coldstart : Setting if cold-start experiments.
 * interval : Interval of updating the learning efficiency.
+* beta : Number of neighbouring nodes.
+* lambda_G : Similarity Threshold.
 
