@@ -40,12 +40,9 @@ def lossOfRepresentationLevel(adj_exercise_kc, adj_EE_view, adj_KK_view, exercis
     inter_kc = torch.exp(torch.matmul(kc_ebedd, contrastive_kc_ebedd.t()) / temperature)
     diagonal_matrix_KC = utils.varible(torch.eye(adj_KK_view.shape[0]), gpu)
     zero_vec = torch.zeros_like(inter_kc)
-    # obtain positive pair of KCs
     pos_kc = torch.where(diagonal_matrix_KC > 0, inter_kc, zero_vec).sum(dim=-1)
-    # obtain negivate pair of KCs
     neg_intra_kc = torch.where(diagonal_matrix_KC < 1, intra_kc, zero_vec).sum(dim=-1)
     neg_inter_kc = torch.where(diagonal_matrix_KC < 1, inter_kc, zero_vec).sum(dim=-1)
-    # obtain all pair of KCs
     ttl_kc = pos_kc + neg_intra_kc + neg_inter_kc
     cl_loss_kc = -torch.log(pos_kc / ttl_kc)
 
@@ -54,9 +51,7 @@ def lossOfRepresentationLevel(adj_exercise_kc, adj_EE_view, adj_KK_view, exercis
     inter_exercise = torch.exp(torch.matmul(exercise_ebedd, contrastive_exercise_ebedd.t()) / temperature)
     diagonal_matrix_exercise = utils.varible(torch.eye(adj_EE_view.shape[0]), gpu)
     zero_vec = torch.zeros_like(inter_exercise)
-    # obtain positive pair of exercises
     pos_exercise = torch.where(diagonal_matrix_exercise > 0, inter_exercise, zero_vec).sum(dim=-1)
-    # obtain negivate pair of exercises
     neg_intra_exercise = torch.where(diagonal_matrix_exercise < 1, intra_exercise, zero_vec).sum(dim=-1)
     neg_inter_exercise = torch.where(diagonal_matrix_exercise < 1, inter_exercise, zero_vec).sum(dim=-1)
 

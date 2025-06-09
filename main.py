@@ -52,8 +52,10 @@ def main():
     parser.add_argument('--interval', type=int, default=10, help='Interval of updating the learning efficiency')
     parser.add_argument('--coldstart', type=float, default=1.0, help='Training set for training')
     parser.add_argument('--lambda1', type=float, default= 0.5, help='Weight parameters of the loss function')
+    parser.add_argument('--lambda_G', type=float, default= 0.6, help='Similarity Threshold')
+    parser.add_argument('--beta', type=float, default=20, help='Number of neighbouring nodes')
     parser.add_argument('--fold', type=str, default='1', help='number of fold')
-    dataset = 'assist2009_B'
+    dataset = 'assist2017'
 
     if dataset == 'assist2009_B':
         parser.add_argument('--batch_size', type=int, default=32, help='the batch size')

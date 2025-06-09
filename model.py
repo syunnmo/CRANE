@@ -1,7 +1,6 @@
 import torch
 import torch.nn as nn
 import utils as utils
-import torch.nn.functional as F
 from graph_encoders import Graph_encoder1,Graph_encoder2
 from lossFunction import lossOfRepresentationLevel
 from knowledge_encoders import KnowledgestateAcquisition
@@ -98,14 +97,12 @@ class preprocessing_embedd(nn.Module):
         self.alpha = alpha
         self.gpu = gpu
 
-        # Graph_encoder1 for propagation
         self.graph_encoder1 = [
             Graph_encoder1(self.exercise_embed_dim, self.exercise_embed_dim, dropout=self.dropout,
                            alpha=self.alpha, concat=True) for _ in range(self.nheads)]
         for i, attention in enumerate(self.graph_encoder1):
             self.add_module('exercise_kc_attention_{}'.format(i), attention)
 
-        # Graph_encoder2 for propagation
         self.graph_encoder2_EE = Graph_encoder2(self.exercise_embed_dim)
         self.graph_encoder2_KK = Graph_encoder2(self.exercise_embed_dim)
 
@@ -132,8 +129,6 @@ class preprocessing_embedd(nn.Module):
 
         slice_exercise_respond_data = torch.chunk(exercise_respond_data, seqlen, 1)
 
-        # Correct answer is concated the right side of exercise embedding;
-        # Incorrect answer is concated the left side of exercise embedding.
         zeros = torch.zeros_like(exercise_embedding)
         cat1 = torch.cat((zeros, exercise_embedding), -1)
         cat2 = torch.cat((exercise_embedding, zeros), -1)

@@ -5,11 +5,13 @@ This project is the Pytorch implementation for CRANE.
 # Dataset
 In 'data' folder, we have provided the processed datasets. 
 If you would like to access the raw datasets, the raw datasets are placed in the following links:
-* ASSISTments2009  : [address](https://sites.google.com/site/assistmentsdata/home/2009-2010-assistment-data)
+* ASSISTments2009 : [address](https://sites.google.com/site/assistmentsdata/home/2009-2010-assistment-data)
+* ASSISTments2017 : [address](https://sites.google.com/view/assistmentsdatamining/dataset)
 * EdNet : [address](https://github.com/riiid/ednet)
 
 The processed datasets are placed in the following links:
-* assistment2009 : [download](https://drive.google.com/drive/folders/1TPjOwJgwhkohZJczeEmzVdhIIUNwtaFa?usp=sharing)
+* ASSISTments2009 : [download](https://drive.google.com/drive/folders/1TPjOwJgwhkohZJczeEmzVdhIIUNwtaFa?usp=sharing)
+* ASSISTments2017 : [download](https://drive.google.com/drive/folders/1LaR6MC3fSoPQnETVjkN3e67Szy8D13rp?usp=share_link) 
 * EdNet : [download](https://drive.google.com/drive/folders/1suSo45frIYptqSMzzuSQJTfFvI_CAa5_?usp=sharing)
 
 After you download the dataset, the corresponding dataset folder should be created in 'data' folder.
@@ -28,9 +30,9 @@ __Environment__:
 * numpy 1.19.2
 
 # Running CRANE
-Here is a example for using CRANE model (on EdNet):  
+Here is a example for using CRANE model (on assist2017):  
 ```
-  python main.py --dataset ednet  
+  python main.py --dataset assist2017  
 ```
 
 Explanation of parameters:  
@@ -43,3 +45,4 @@ Explanation of parameters:
 * mode : Selection of integration function.
 * coldstart : Setting if cold-start experiments.
 * interval : Interval of updating the learning efficiency.
+

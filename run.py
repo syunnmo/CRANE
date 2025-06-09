@@ -58,14 +58,6 @@ def train(epoch_num, model, params, optimizer, scheduler, adj_exercise_kc, adj_E
         pred_list.append(right_pred)
         target_list.append(right_target)
 
-    # Save exercise embedding
-    # times = time()
-    # torch.save(exercise_embedding, "./data/assist2009_B/exercise_embedding" + str(times) + ".pth")
-
-    # Save KC embedding
-    times = time()
-    torch.save(kc_embedding, "./data/assist2009_B/KC_embedding" + str(times) + ".pth")
-
     scheduler.step()
     all_pred = np.concatenate(pred_list, axis=0)
     all_target = np.concatenate(target_list, axis=0)
@@ -125,10 +117,6 @@ def test(model, params, optimizer, scheduler, adj_exercise_kc, adj_EE_view, adj_
     all_pred = np.concatenate(pred_list, axis=0)
     all_target = np.concatenate(target_list, axis=0)
 
-    with open('P_statistics.csv', mode='w', newline='') as file:
-        writer = csv.writer(file)
-        writer.writerow(all_pred)  # 第一行
-        writer.writerow(all_target)
 
     auc = metrics.roc_auc_score(all_target, all_pred)
     MSE = metrics.mean_squared_error(all_target, all_pred)
